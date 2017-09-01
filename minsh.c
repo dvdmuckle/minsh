@@ -20,7 +20,7 @@
 #include <unistd.h>
 #include <sys/wait.h>
 char *user;
-char *host;
+char host[20];
 int main(int argc, char** argv)
 {
 	int should_run = 1;
@@ -29,9 +29,9 @@ int main(int argc, char** argv)
 	while (should_run){   
 		printf("%s@%s> ", user, host);
 		fflush(stdout);
-		char *command[20];
-		fgets(*command, 20, stdin);
-		printf(*command);
+		char command[256];
+		fgets(command, 256, stdin);
+		printf(command);
 		/* int rc = fork();
 		if(rc<0){
 			printf("Fork failed!");
