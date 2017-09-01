@@ -19,22 +19,26 @@
 #include <stdio.h>
 #include <unistd.h>
 #include <sys/wait.h>
+char *user;
+char *host;
 int main(int argc, char** argv)
 {
 	int should_run = 1;
-
+	user = getlogin();
+	gethostname(host, 20);
 	while (should_run){   
-		printf("minsh> ");
+		printf("%s@%s> ", user, host);
 		fflush(stdout);
 		char *command[20];
 		fgets(*command, 20, stdin);
-		int rc = fork();
+		printf(*command);
+		/* int rc = fork();
 		if(rc<0){
 			printf("Fork failed!");
 		}
 		if(rc == 0){
 			
-		}
+		}*/
 		/*
 		 *          (0) Read user input, e.g. with fgets()
 		 *          (1) fork a child process
