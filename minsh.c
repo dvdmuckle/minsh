@@ -20,6 +20,7 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/wait.h>
+#include <argp.h>
 typedef int bool;
 #define true 1
 #define false 0
@@ -29,10 +30,15 @@ bool verbose = false;
 int main(int argc, char** argv)
 {
 	int should_run = 1;
-	if(strcmp(argv[0], "-v")){
+	for(int i = 0; i < argc; i++){
+		if(strcmp(argv[i], "-v") == 0){
 			verbose = true;
-			printf("Running in verbose mode.\n");
-			}
+			printf("Running in verbose mode\n");
+		}
+	}
+	if(verbose == true){
+		printf("Getting user and hostname for custom prompt\n");
+	}
 	user = getlogin();
 	gethostname(host, 20);
 	while (should_run){   
