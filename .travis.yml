@@ -1,5 +1,5 @@
 language: c
 compiler:
         - gcc
-script: bash .test.sh
+script: make && bash .test.sh
 dist: trusty

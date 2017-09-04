@@ -20,7 +20,6 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/wait.h>
-#include <argp.h>
 typedef int bool;
 #define true 1
 #define false 0
@@ -35,8 +34,12 @@ int main(int argc, char** argv)
 			verbose = true;
 			printf("Running in verbose mode\n");
 		}
+		if(strcmp(argv[i], "--help") == 0) {
+			printf("Minsh - a simple shell\n-v - Start in verbose mode\nMinsh is a simple shell that supports commands and stdout redirection");
+			exit(0);
+		}
 	}
-	if(verbose == true){
+	if(verbose){
 		printf("Getting user and hostname for custom prompt\n");
 	}
 	user = getlogin();
@@ -48,14 +51,24 @@ int main(int argc, char** argv)
 		fgets(command, 256, stdin);
 		strtok(command, "\n");
 		if(strcmp(command, "exit") == 0){
+			if(verbose){
+				printf("Alright, we're exiting\n");
+			}
 			exit(0);
+		}
+		char *cmdArgs[128];
+		int i=0;
+		cmdArgs[i] = strtok(command, " ");
+
+		while(cmdArgs[i] != NULL){
+			cmdArgs[++i] = strtok(NULL, " ");
 		}
 		int rc = fork();
 		if(rc<0){
 			printf("Fork failed!");
 		}
 		if(rc == 0){
-			execvp(command, NULL);	
+			execvp(command, cmdArgs);	
 		}
 		/*
 		 *          (0) Read user input, e.g. with fgets()
