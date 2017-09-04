@@ -35,7 +35,7 @@ int main(int argc, char** argv)
 			printf("Running in verbose mode\n");
 		}
 		if(strcmp(argv[i], "--help") == 0) {
-			printf("Minsh - a simple shell\n-v - Start in verbose mode\nMinsh is a simple shell that supports commands and stdout redirection");
+			printf("Minsh - a simple shell\n-v - Start in verbose mode\nMinsh is a simple shell that supports commands and stdout redirection\n");
 			exit(0);
 		}
 	}
@@ -58,6 +58,10 @@ int main(int argc, char** argv)
 		}
 		char *cmdArgs[128];
 		int i=0;
+		char initialCommand[256];
+		if(verbose){
+			strcpy(initialCommand, command);
+		}
 		cmdArgs[i] = strtok(command, " ");
 
 		while(cmdArgs[i] != NULL){
@@ -65,10 +69,19 @@ int main(int argc, char** argv)
 		}
 		int rc = fork();
 		if(rc<0){
-			printf("Fork failed!");
+			printf("Fork failed!\n");
 		}
-		if(rc == 0){
+		else if(rc == 0){
+			if(verbose){
+				printf("Fork successful, running %s\n", initialCommand);
+			}
 			execvp(command, cmdArgs);	
+		}
+		else{
+			wait(NULL);
+			if(verbose){
+				printf("We're done waiting, return back to prompt\n");
+			}
 		}
 		/*
 		 *          (0) Read user input, e.g. with fgets()
