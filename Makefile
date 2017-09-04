@@ -1,5 +1,5 @@
 all:
-	gcc -o minsh minsh.c -Wall
+	gcc -o minsh minsh.c -Wall -std=gnu99
 clean:
 	rm minsh
 install:
