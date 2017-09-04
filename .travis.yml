@@ -1,5 +1,8 @@
 language: c
 compiler:
         - gcc
-script: make
+before_script:
+        - sudo apt-get install coreutils
+
+script: make && timeout --signal=INT 10 ./minsh
 dist: trusty
