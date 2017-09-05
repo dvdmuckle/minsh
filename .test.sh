@@ -1,10 +1,12 @@
 #!/bin/bash
 trap 'exit 0' SIGINT SIGTERM
-timeout --signal=INT 10 ./minsh
+timeout --signal=INT --preserve-status 10 ./minsh
 RET="$?";
-if [[ "$RET" = "124" ]]; then
+echo $RET;
+if [[ "$RET" = "130" ]]; then
 
-	echo "Caught 124, exiting gracefully"
+	echo "Caught 130, exiting gracefully"
 	exit 0
 
 fi
+exit 1
