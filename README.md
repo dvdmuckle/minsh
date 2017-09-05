@@ -5,9 +5,11 @@ A very simple shell.
 
 ### Compile and install
 
-`make && make install`
+`make && sudo make install`
 
-Will install to your ~/.local/bin folder.
+Will install to your /usr/bin folder.
+
+Alternatively, `make && make test-install` will install to ~/.local/bin
 
 ### Use
 
