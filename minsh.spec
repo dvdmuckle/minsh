@@ -5,9 +5,8 @@ Name: %{name}
 Version: %{version}	
 Release: %{build_timestamp}
 Summary: A very simple shell	
-Source0: https://github.com/dvdmuckle/minsh/archive/master.tar.gz#/%{name}-%{version}-%{release}.tar.gz
+Source0: https://github.com/dvdmuckle/minsh/archive/master.tar.gz#/%{name}-master.tar.gz
 License: GPLv3
-BuildRoot: %{_tmppath/%{name}-buildroot}
 BuildRequires: gcc	
 
 %description
@@ -15,7 +14,7 @@ BuildRequires: gcc
 A very simple shell that supports running commands and output redirection.
 
 %prep
-%autosetup -n %{name}-master
+%autosetup -n %{name}-master.tar.gz
 
 
 %build
@@ -23,14 +22,14 @@ make
 
 
 %install
-mkdir %{buildroot}/usr/bin -p
-cp minsh %{buildroot}/usr/bin/
+mkdir %{buildroot}${_bindir} -p
+install -s minsh.o  %{buildroot}/usr/bin/
 
 %clean
 rm -rf %{buildroot}
 
 %files
-/usr/bin/minsh
+${_bindir}/minsh
 %doc
 
 

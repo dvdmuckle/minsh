@@ -1,9 +1,17 @@
-all:
-	gcc -o minsh minsh.c -Wall -std=gnu99
-clean:
-	rm minsh
-test-install:
-	mkdir -p ~/.local/bin/
-	mv minsh ~/.local/bin/
+CC=gcc
+CFLAGS=-I. -Wall -std=gnu99
+DEPS =
+OBJ = minsh.o
+
+all: $(OBJ)
+
+%.o: %.c $(DEPS)
+	$(CC) -o $@ $< $(CFLAGS)
+
 install:
-	mv minsh /usr/bin/
+	install -s minsh.o /usr/bin/minsh
+
+
+.PHONY : clean
+clean:
+	rm $(OBJ)
