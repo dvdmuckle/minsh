@@ -3,4 +3,5 @@ all:
 clean:
 	rm minsh
 install:
+	mkdir -p ~/.local/bin/
 	mv minsh ~/.local/bin/
