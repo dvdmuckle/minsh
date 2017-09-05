@@ -1,10 +1,11 @@
 %define name minsh
 %define build_timestamp %{lua: print(os.date("%Y%m%d"))}
+%define version 1.0
 Name: %{name}		
-Version: 1.0	
+Version: %{version}	
 Release: %{build_timestamp}
 Summary: A very simple shell	
-Source0: https://github.com/dvdmuckle/minsh/archive/master.tar.gz
+Source0: https://github.com/dvdmuckle/minsh/archive/master.tar.gz#/%{name}-%{version}-%{release}.tar.gz
 License: GPLv3
 BuildRoot: %{_tmppath/%{name}-buildroot}
 BuildRequires: gcc	
@@ -25,7 +26,8 @@ make
 mkdir %{buildroot}/usr/bin -p
 cp minsh %{buildroot}/usr/bin/
 
-
+%clean
+rm -rf %{buildroot}
 
 %files
 /usr/bin/minsh
