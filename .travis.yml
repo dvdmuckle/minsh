@@ -3,3 +3,8 @@ compiler:
         - gcc
 script: make && bash .test.sh
 dist: trusty
+notifications:
+        irc:
+                channels:
+                        - "chat.freenode.net#dvdmuckle-bot-test"
+
