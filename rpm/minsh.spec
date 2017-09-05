@@ -5,16 +5,16 @@ Name: %{name}
 Version: %{version}	
 Release: %{build_timestamp}
 Summary: A very simple shell	
-Source0: https://github.com/dvdmuckle/minsh/archive/1.0.tar.gz
+Source0: https://github.com/dvdmuckle/minsh/archive/master.tar.gz#/%{name}-%{version}-%{release}.tar.gz
 License: GPLv3
 BuildRequires: gcc	
 
 %description
 
 A very simple shell that supports running commands and output redirection.
-
+%global debug_package %{nil}
 %prep
-%autosetup -n %{name}-%{version}.tar.gz
+%autosetup -n %{name}-master
 
 
 %build
@@ -29,7 +29,7 @@ install -s minsh.o  %{buildroot}%{_bindir}/minsh
 rm -rf %{buildroot}
 
 %files
-${_bindir}/minsh
+%{_bindir}/minsh
 %doc
 
 
