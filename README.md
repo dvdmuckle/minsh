@@ -9,7 +9,7 @@ A very simple shell.
 
 Will install to your /usr/bin folder.
 
-Alternatively, `make && make test-install` will install to ~/.local/bin
+Alternatively, `make && make test-install` will install to your current directory.
 
 ### Use
 
