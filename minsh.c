@@ -30,6 +30,10 @@ int main(int argc, char** argv)
 {
 	int should_run = 1;
 	for(int i = 0; i < argc; i++){
+		if(strcmp(argv[i], "-v") != 0 && strcmp(argv[i], "--help") != 0){
+			printf("Invalid flag, use --help for more information");
+			exit(1);
+		}
 		if(strcmp(argv[i], "-v") == 0){
 			verbose = true;
 			printf("Running in verbose mode\n");
