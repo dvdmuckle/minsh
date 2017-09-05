@@ -53,7 +53,11 @@ int main(int argc, char** argv)
 		printf("%s@%s> ", user, host);
 		fflush(stdout);
 		char command[256];
-		fgets(command, 256, stdin);
+		if(fgets(command, 256, stdin) == NULL){
+			//If we were just piped input, don't loop on the input, just run whatever command was fed
+			printf("\n");
+			break;
+		}
 		//If user only hit return, skip all this and just loop back
 		if(strcmp(command, "\n") == 0){
 			continue;
