@@ -83,14 +83,7 @@ int main(int argc, char** argv)
 				printf("We're done waiting, return back to prompt\n");
 			}
 		}
-		/*
-		 *          (0) Read user input, e.g. with fgets()
-		 *          (1) fork a child process
-		 *          (2) the child process will invoke execvp()
-		 *          (3) the parent will invoke wait()
-		 *  
-		 */
-	} // end while
+	} 
 
 	return 0;
 }
