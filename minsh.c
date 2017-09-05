@@ -30,8 +30,8 @@ int main(int argc, char** argv)
 {
 	int should_run = 1;
 	for(int i = 0; i < argc; i++){
-		if(strcmp(argv[i], "-v") != 0 && strcmp(argv[i], "--help") != 0){
-			printf("Invalid flag, use --help for more information");
+		if(strcmp(argv[i], "-v") != 0 && strcmp(argv[i], "--help") != 0 && i>=1){
+			printf("Invalid flag, use --help for more information\n");
 			exit(1);
 		}
 		if(strcmp(argv[i], "-v") == 0){
