@@ -1,6 +1,6 @@
 #!/bin/bash
 trap 'exit 0' SIGINT SIGTERM
-timeout --signal=INT --preserve-status 10 ./minsh
+timeout --signal=INT --preserve-status 10 minsh
 RET="$?";
 echo $RET;
 if [[ "$RET" = "130" ]]; then
