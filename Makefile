@@ -15,3 +15,6 @@ install:
 .PHONY : clean
 clean:
 	rm $(OBJ)
+.PHONY : test-install
+test-install:
+	install -s minsh.o minsh
