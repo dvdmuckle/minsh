@@ -5,7 +5,7 @@ Name: %{name}
 Version: %{version}	
 Release: %{build_timestamp}
 Summary: A very simple shell	
-Source0: https://github.com/dvdmuckle/minsh/archive/master.tar.gz#/%{name}-%{version}-%{release}.tar.gz
+Source0: https://github.com/dvdmuckle/minsh/archive/1.0.tar.gz
 License: GPLv3
 BuildRequires: gcc	
 
@@ -14,7 +14,7 @@ BuildRequires: gcc
 A very simple shell that supports running commands and output redirection.
 
 %prep
-%autosetup -n %{name}-master.tar.gz
+%autosetup -n %{name}-%{version}.tar.gz
 
 
 %build
