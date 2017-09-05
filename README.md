@@ -11,4 +11,4 @@ Will install to your ~/.local/bin folder.
 
 ### Use
 
-Start with ./minsh. Use ./minsh --help for more information. Use ./minsh -v to start in verbose mode.
+Start with `./minsh`. Use .`/minsh --help` for more information. Use `./minsh -v` to start in verbose mode.
