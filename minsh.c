@@ -30,6 +30,10 @@ int main(int argc, char** argv)
 {
 	int should_run = 1;
 	for(int i = 0; i < argc; i++){
+		if(strcmp(argv[i], "-v") != 0 && strcmp(argv[i], "--help") != 0 && i>=1){
+			printf("Invalid flag, use --help for more information\n");
+			exit(1);
+		}
 		if(strcmp(argv[i], "-v") == 0){
 			verbose = true;
 			printf("Running in verbose mode\n");
@@ -83,14 +87,7 @@ int main(int argc, char** argv)
 				printf("We're done waiting, return back to prompt\n");
 			}
 		}
-		/*
-		 *          (0) Read user input, e.g. with fgets()
-		 *          (1) fork a child process
-		 *          (2) the child process will invoke execvp()
-		 *          (3) the parent will invoke wait()
-		 *  
-		 */
-	} // end while
+	} 
 
 	return 0;
 }
