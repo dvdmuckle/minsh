@@ -28,6 +28,7 @@ char host[20];
 bool verbose = false;
 int main(int argc, char** argv)
 {
+	//Help stuff and verbose mode
 	int should_run = 1;
 	for(int i = 0; i < argc; i++){
 		if(strcmp(argv[i], "-v") != 0 && strcmp(argv[i], "--help") != 0 && i>=1){
@@ -53,13 +54,20 @@ int main(int argc, char** argv)
 		fflush(stdout);
 		char command[256];
 		fgets(command, 256, stdin);
+		//If user only hit return, skip all this and just loop back
+		if(strcmp(command, "\n") == 0){
+			continue;
+		}
+		//Remove the newline at the tail of the command
 		strtok(command, "\n");
+		//Exit if we need to
 		if(strcmp(command, "exit") == 0){
 			if(verbose){
 				printf("Alright, we're exiting\n");
 			}
 			exit(0);
 		}
+		//Chop up the command into the command itself and the arguments
 		char *cmdArgs[128];
 		int i=0;
 		char initialCommand[256];
@@ -71,6 +79,7 @@ int main(int argc, char** argv)
 		while(cmdArgs[i] != NULL){
 			cmdArgs[++i] = strtok(NULL, " ");
 		}
+		//Perform the actual command
 		int rc = fork();
 		if(rc<0){
 			printf("Fork failed!\n");
