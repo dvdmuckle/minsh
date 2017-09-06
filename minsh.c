@@ -83,6 +83,14 @@ int main(int argc, char** argv)
 		while(cmdArgs[i] != NULL){
 			cmdArgs[++i] = strtok(NULL, " ");
 		}
+		//Check if we just want to cd
+		if(strcmp(command, "cd") == 0){
+			if(verbose){
+				printf("Changing directory to %s\n", cmdArgs[1]);
+			}
+			chdir(cmdArgs[1]);
+			continue;
+		}
 		//Perform the actual command
 		int rc = fork();
 		if(rc<0){
