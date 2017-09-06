@@ -14,7 +14,7 @@ BuildRequires: gcc
 A very simple shell that supports running commands and output redirection.
 %global debug_package %{nil}
 %prep
-%autosetup -n %{name}-master
+%autosetup -n %{name}-%{version}-%{release}
 
 
 %build
