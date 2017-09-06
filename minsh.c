@@ -87,17 +87,18 @@ int main(int argc, char** argv)
 		int rc = fork();
 		if(rc<0){
 			printf("Fork failed!\n");
+			exit(1);
 		}
 		else if(rc == 0){
 			if(verbose){
-				printf("Fork successful, running %s\n", initialCommand);
+				printf("Fork successful, running %s with pid %d\n", initialCommand, (int) getpid());
 			}
 			execvp(command, cmdArgs);	
 		}
 		else{
-			wait(NULL);
+			int wc = wait(NULL);
 			if(verbose){
-				printf("We're done waiting, return back to prompt\n");
+				printf("Process %d (wc: %d) (pid: %d) done waiting\n", rc, wc, (int) getpid());
 			}
 		}
 	} 
