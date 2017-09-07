@@ -4,6 +4,5 @@
 !*.sh
 !LICENSE
 !CONTRIBUTORS
-!rpm/
 !.copr.enc
-!minsh.spec
+!*.spec
