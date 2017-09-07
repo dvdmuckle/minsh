@@ -23,7 +23,7 @@ notifications:
                         - "chat.freenode.net#dvdmuckle-bot-test"
 
 after_success:
-        - sudo pip install copr-cli simplejson jinja2
+        - pip install copr-cli simplejson jinja2 --user
         - openssl aes-256-cbc -K $encrypted_403c23673bf1_key -iv $encrypted_403c23673bf1_iv -in .copr.enc -out .copr -d
         - copr-cli --config .copr build --nowait ${COPR_REPOSITORY} *.src.rpm
 
