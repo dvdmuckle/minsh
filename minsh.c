@@ -26,6 +26,7 @@ typedef int bool;
 char *user;
 char host[20];
 bool verbose = false;
+char homedir[64];
 int main(int argc, char** argv)
 {
 	//Help stuff and verbose mode
@@ -49,6 +50,7 @@ int main(int argc, char** argv)
 	}
 	user = getlogin();
 	gethostname(host, 20);
+	sprintf(homedir, "/home/%s", user);
 	while (should_run){   
 		printf("%s@%s> ", user, host);
 		fflush(stdout);
@@ -85,11 +87,19 @@ int main(int argc, char** argv)
 		}
 		//Check if we just want to cd
 		if(strcmp(command, "cd") == 0){
-			if(verbose){
-				printf("Changing directory to %s\n", cmdArgs[1]);
+			if(i == 1){
+				if(verbose){
+					printf("No directory supplied, changing to %s\n", homedir);
+				}
+				chdir(homedir);
+				continue;
+			} else {
+				if(verbose){
+					printf("Changing directory to %s\n", cmdArgs[1]);
+				}
+				chdir(cmdArgs[1]);
+				continue;
 			}
-			chdir(cmdArgs[1]);
-			continue;
 		}
 		//Perform the actual command
 		int rc = fork();
