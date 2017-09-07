@@ -22,6 +22,6 @@ notifications:
 
 after_success:
         - pip install copr-cli simplejson
-        - openssl aes-256-cbc -K  -iv  -in .copr.enc -out .copr -d
+        - openssl aes-256-cbc -K $encrypted_403c23673bf1_key -iv $encrypted_403c23673bf1_iv -in .copr.enc -out ~\/.config/copr -d
         - copr-cli --config .copr build ${COPR_REPOSITORY} *.src.rpm
 
