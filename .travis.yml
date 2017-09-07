@@ -13,7 +13,9 @@ install: true
 
 compiler:
         - gcc
-script: docker run -v ${PWD}:/sources -v ${PWD}:/output:Z -e "SRPM_ONLY=1" ${DOCKER_IMAGE}:${OS_TYPE}-${OS_VERSION}
+script:
+        - make && sudo make install && bash .test.sh
+        - docker run -v ${PWD}:/sources -v ${PWD}:/output:Z -e "SRPM_ONLY=1" ${DOCKER_IMAGE}:${OS_TYPE}-${OS_VERSION}
 dist: trusty
 notifications:
         irc:
@@ -21,7 +23,7 @@ notifications:
                         - "chat.freenode.net#dvdmuckle-bot-test"
 
 after_success:
-        - pip install copr-cli simplejson
+        - pip install copr-cli simplejson jinja2
         - openssl aes-256-cbc -K $encrypted_403c23673bf1_key -iv $encrypted_403c23673bf1_iv -in .copr.enc -out .copr -d
         - copr-cli --config .copr build ${COPR_REPOSITORY} *.src.rpm
 
