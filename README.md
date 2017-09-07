@@ -5,6 +5,8 @@ A very simple shell.
 
 ### Compile and install
 
+A Copr repo for Fedora 25 and 26 is supplied. Please see [here](https://copr.fedorainfracloud.org/coprs/dvdmuckle/minsh/package/minsh/) for more information.
+
 `make && sudo make install`
 
 Will install to your /usr/bin folder.
@@ -13,4 +15,4 @@ Alternatively, `make && make test-install` will install to your current director
 
 ### Use
 
-Start with `./minsh`. Use .`/minsh --help` for more information. Use `./minsh -v` to start in verbose mode.
+Start with `minsh`. Use `minsh --help` for more information. Use `minsh -v` to start in verbose mode.
