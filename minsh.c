@@ -20,8 +20,6 @@
 #include <unistd.h>
 #include <string.h>
 #include <sys/wait.h>
-#include <sys/types.h>
-#include <sys/stat.h>
 #include <fcntl.h>
 typedef int bool;
 #define true 1
@@ -112,21 +110,16 @@ int main(int argc, char** argv)
 		}
 		else if(rc == 0){
 			//Check if we're redirecting to a file
-			//HEY DUMBASS, EXECVP WILL ONLY READ THE SECOND ARG UP UNTIL IT FIND "NULL"
-			/*if(strcmp(cmdArgs[i-2], ">") == 0){
+			if(strcmp(cmdArgs[--i], ">") == 0){
 				if(verbose){
-					printf("Fork successful, running %s with pid %d\n", initialCommand, (int) getpid());
+					printf("Fork with redirect successful, running %s with pid %d\n", initialCommand, (int) getpid());
 				}
 				close(STDOUT_FILENO);
 				open(cmdArgs[i], O_CREAT|O_WRONLY|O_TRUNC, S_IRWXU);
-				char* redirectArgs[i];
-				for(int c = 0; c < i-2; c++){
-					strcpy(cmdArgs[c], redirectArgs[c]);
+				cmdArgs[i-1]="\0";
+				execvp(command, cmdArgs);
 
-				}
-				execvp(command, redirectArgs);
-
-			}*/
+			}
 			if(verbose){
 				printf("Fork successful, running %s with pid %d\n", initialCommand, (int) getpid());
 			}
