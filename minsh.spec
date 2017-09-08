@@ -7,6 +7,7 @@ Release: %{build_timestamp}
 Summary: A very simple shell	
 Source0: https://github.com/dvdmuckle/minsh/archive/master.tar.gz#/%{name}-%{version}-%{release}.tar.gz
 License: GPLv3
+Packager: David Muckle <dvdmuckle@dvdmuckle.xyz>
 BuildRequires: gcc	
 
 %description
