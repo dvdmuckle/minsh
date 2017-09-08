@@ -112,6 +112,7 @@ int main(int argc, char** argv)
 		}
 		else if(rc == 0){
 			//Check if we're redirecting to a file
+			//HEY DUMBASS, EXECVP WILL ONLY READ THE SECOND ARG UP UNTIL IT FIND "NULL"
 			/*if(strcmp(cmdArgs[i-2], ">") == 0){
 				if(verbose){
 					printf("Fork successful, running %s with pid %d\n", initialCommand, (int) getpid());
