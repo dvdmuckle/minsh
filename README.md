@@ -3,9 +3,24 @@
 
 A very simple shell.
 
-### Compile and install
+### Install
 
-A Copr repo for Fedora 25 and 26 is supplied. Please see [here](https://copr.fedorainfracloud.org/coprs/dvdmuckle/minsh/package/minsh/) for more information.
+#### Fedora
+A Copr repo for Fedora 25, 26, and rawhide is supplied.
+
+```
+sudo dnf copr enable dvdmuckle/minsh
+sudo dnf install minsh
+```
+
+#### Ubuntu
+Packages for Ubuntu Trusty and Xenial are available.
+
+```
+curl -s https://packagecloud.io/install/repositories/dvdmuckle/minsh/script.deb.sh | sudo bash
+sudo apt-get install minsh
+```
+### Compile
 
 `make && sudo make install`
 
