@@ -30,5 +30,7 @@ after_success:
         - sudo apt-get install alien
         - sudo alien *[^src].rpm
         - sudo gem install package_cloud
+        - package_cloud yank dvdmuckle/minsh/ubuntu/trusty *.deb
         - package_cloud push dvdmuckle/minsh/ubuntu/trusty *.deb
+        - package_cloud yank dvdmuckle/minsh/ubuntu/xenial *.deb
         - package_cloud push dvdmuckle/minsh/ubuntu/xenial *.deb
