@@ -109,11 +109,6 @@ int main(int argc, char** argv)
 			exit(1);
 		}
 		else if(rc == 0){
-			if(verbose){
-				for(int c = 0; c < i; c++){
-					printf("[%s]\n", cmdArgs[c]);
-				}
-			}
 			//Check if we're redirecting to a file
 			//We have to check if i is greater than two, because the next conditional subtracts 2 from i
 			//If i isn't greater than 2, we get a bad array access and our command just doesn't run
