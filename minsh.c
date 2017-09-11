@@ -56,6 +56,7 @@ int main(int argc, char** argv)
 		printf("%s@%s> ", user, host);
 		fflush(stdout);
 		char command[256];
+		//Actuall take the command input. Since we have to give fgets a buffer, this determines our command string size too
 		if(fgets(command, 256, stdin) == NULL){
 			//If we were just piped input, don't loop on the input, just run whatever command was fed
 			printf("\n");
@@ -75,14 +76,18 @@ int main(int argc, char** argv)
 			exit(0);
 		}
 		//Chop up the command into the command itself and the arguments
-		char *cmdArgs[128];
-		int i=0;
+		char *cmdArgs[256];
 		char initialCommand[256];
+		//Preserve our initial command so we can print it out later if verbose
+		//We need to init initialCommand even if verbose is false, else there's a compiler error
 		if(verbose){
 			strcpy(initialCommand, command);
 		}
+		//Start putting flags into cmdArgs
+		//Running strtok with an arg of NULL just picks up where the last strtok left off
+		//This also gives us a nifty value in i, the length of the array of args, zero indexed
+		int i=0;
 		cmdArgs[i] = strtok(command, " ");
-
 		while(cmdArgs[i] != NULL){
 			cmdArgs[++i] = strtok(NULL, " ");
 		}
@@ -90,13 +95,13 @@ int main(int argc, char** argv)
 		if(strcmp(command, "cd") == 0){
 			if(i == 1){
 				if(verbose){
-					printf("No directory supplied, changing to %s\n", homedir);
+					printf("No directory supplied, changing to \"%s\n\"", homedir);
 				}
 				chdir(homedir);
 				continue;
 			} else {
 				if(verbose){
-					printf("Changing directory to %s\n", cmdArgs[1]);
+					printf("Changing directory to \"%s\n\"", cmdArgs[1]);
 				}
 				chdir(cmdArgs[1]);
 				continue;
@@ -110,8 +115,8 @@ int main(int argc, char** argv)
 		}
 		else if(rc == 0){
 			//Check if we're redirecting to a file
-			//We have to check if i is greater than two, because the next conditional subtracts 2 from i
-			//If i isn't greater than 2, we get a bad array access and our command just doesn't run
+			//We have to check if i is greater than one, because the next conditional subtracts 2 from i
+			//If i isn't greater than one, we get a bad array access and our command just doesn't run
 			if(i > 1){
 				if(strcmp(cmdArgs[i-2], ">") == 0){
 					if(verbose){
