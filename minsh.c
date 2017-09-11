@@ -132,7 +132,9 @@ int main(int argc, char** argv)
 			if(verbose){
 				printf("Fork successful, running \"%s\" with pid %d\n", initialCommand, (int) getpid());
 			}
-			execvp(command, cmdArgs);	
+			execvp(command, cmdArgs);
+			printf("Command \"%s\" not found...\n", initialCommand);
+			break;
 		}
 		else{
 			int wc = wait(NULL);
