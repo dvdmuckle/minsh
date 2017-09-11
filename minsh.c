@@ -133,7 +133,7 @@ int main(int argc, char** argv)
 				printf("Fork successful, running \"%s\" with pid %d\n", initialCommand, (int) getpid());
 			}
 			execvp(command, cmdArgs);
-			printf("Command \"%s\" not found...\n", initialCommand);
+			fprintf(stderr, "Command \"%s\" not found...\n", initialCommand);
 			break;
 		}
 		else{
