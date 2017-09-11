@@ -112,7 +112,7 @@ int main(int argc, char** argv)
 			//Check if we're redirecting to a file
 			//We have to check if i is greater than two, because the next conditional subtracts 2 from i
 			//If i isn't greater than 2, we get a bad array access and our command just doesn't run
-			if(i > 2){
+			if(i > 1){
 				if(strcmp(cmdArgs[i-2], ">") == 0){
 					if(verbose){
 						printf("Fork with redirect successful, running \"%s\" with pid %d\n", initialCommand, (int) getpid());
