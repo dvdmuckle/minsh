@@ -25,7 +25,7 @@ typedef int bool;
 #define true 1
 #define false 0
 char *user;
-char host[20];
+char host[32];
 bool verbose = false;
 char homedir[64];
 int main(int argc, char** argv)
@@ -50,7 +50,7 @@ int main(int argc, char** argv)
 		printf("Getting user and hostname for custom prompt\n");
 	}
 	user = getlogin();
-	gethostname(host, 20);
+	gethostname(host, 32);
 	sprintf(homedir, "/home/%s", user);
 	while (should_run){   
 		printf("%s@%s> ", user, host);
