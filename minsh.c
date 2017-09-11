@@ -109,19 +109,28 @@ int main(int argc, char** argv)
 			exit(1);
 		}
 		else if(rc == 0){
-			//Check if we're redirecting to a file
-			if(strcmp(cmdArgs[--i], ">") == 0){
-				if(verbose){
-					printf("Fork with redirect successful, running %s with pid %d\n", initialCommand, (int) getpid());
+			if(verbose){
+				for(int c = 0; c < i; c++){
+					printf("[%s]\n", cmdArgs[c]);
 				}
-				close(STDOUT_FILENO);
-				open(cmdArgs[i], O_CREAT|O_WRONLY|O_TRUNC, S_IRWXU);
-				cmdArgs[i-1]="\0";
-				execvp(command, cmdArgs);
+			}
+			//Check if we're redirecting to a file
+			//We have to check if i is greater than two, because the next conditional subtracts 2 from i
+			//If i isn't greater than 2, we get a bad array access and our command just doesn't run
+			if(i > 2){
+				if(strcmp(cmdArgs[i-2], ">") == 0){
+					if(verbose){
+						printf("Fork with redirect successful, running \"%s\" with pid %d\n", initialCommand, (int) getpid());
+					}
+					close(STDOUT_FILENO);
+					open(cmdArgs[i-1], O_CREAT|O_WRONLY|O_TRUNC, S_IRWXU);
+					cmdArgs[i-2]=NULL;
+					execvp(command, cmdArgs);
 
+				}
 			}
 			if(verbose){
-				printf("Fork successful, running %s with pid %d\n", initialCommand, (int) getpid());
+				printf("Fork successful, running \"%s\" with pid %d\n", initialCommand, (int) getpid());
 			}
 			execvp(command, cmdArgs);	
 		}
