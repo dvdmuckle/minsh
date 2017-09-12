@@ -21,6 +21,7 @@
 #include <string.h>
 #include <sys/wait.h>
 #include <fcntl.h>
+#include <dirent.h>
 typedef int bool;
 #define true 1
 #define false 0
@@ -100,10 +101,13 @@ int main(int argc, char** argv)
 				chdir(homedir);
 				continue;
 			} else {
-				if(verbose){
-					printf("Changing directory to \"%s\n\"", cmdArgs[1]);
+				if(chdir(cmdArgs[1]) == 0){
+					if(verbose){
+						printf("Changing directory to \"%s\"\n", cmdArgs[1]);
+					}
+				}else{
+					printf("Error: no such file or directory\n");
 				}
-				chdir(cmdArgs[1]);
 				continue;
 			}
 		}
