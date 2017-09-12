@@ -134,7 +134,7 @@ int main(int argc, char** argv)
 			}
 			execvp(command, cmdArgs);
 			fprintf(stderr, "Command \"%s\" not found...\n", initialCommand);
-			break;
+			exit(1);
 		}
 		else{
 			int wc = wait(NULL);
