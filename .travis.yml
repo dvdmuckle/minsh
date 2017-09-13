@@ -23,14 +23,4 @@ notifications:
                         - "chat.freenode.net#dvdmuckle-bot-test"
 
 after_success:
-        - source ~/virtualenv/python2.7/bin/activate
-        - pip install copr-cli simplejson jinja2
-        - openssl aes-256-cbc -K $encrypted_403c23673bf1_key -iv $encrypted_403c23673bf1_iv -in .copr.enc -out .copr -d
-        - copr-cli --config .copr build --nowait ${COPR_REPOSITORY} *.src.rpm
-        - sudo apt-get install alien
-        - sudo alien *[^src].rpm
-        - sudo gem install package_cloud
-        - package_cloud yank dvdmuckle/minsh/ubuntu/trusty *.deb
-        - package_cloud push dvdmuckle/minsh/ubuntu/trusty *.deb
-        - package_cloud yank dvdmuckle/minsh/ubuntu/xenial *.deb
-        - package_cloud push dvdmuckle/minsh/ubuntu/xenial *.deb
+        - bash deploy.sh
