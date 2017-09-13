@@ -79,11 +79,8 @@ int main(int argc, char** argv)
 		//Chop up the command into the command itself and the arguments
 		char *cmdArgs[256];
 		char initialCommand[256];
-		//Preserve our initial command so we can print it out later if verbose
-		//We need to init initialCommand even if verbose is false, else there's a compiler error
-		if(verbose){
-			strcpy(initialCommand, command);
-		}
+		//Preserve our initial command so we can print it out later if verbose, or if the command is wrong
+		strcpy(initialCommand, command);
 		//Start putting flags into cmdArgs
 		//Running strtok with an arg of NULL just picks up where the last strtok left off
 		//This also gives us a nifty value in i, the length of the array of args, zero indexed
