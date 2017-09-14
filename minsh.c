@@ -111,7 +111,7 @@ int main(int argc, char** argv)
 		//Perform the actual command
 		int rc = fork();
 		if(rc<0){
-			fprintf(stderr, "Fork failed!\n");
+			perror("fork");
 			exit(1);
 		}
 		else if(rc == 0){
