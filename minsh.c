@@ -129,7 +129,9 @@ int main(int argc, char** argv)
 					//Set where our > was so execvp won't read past it
 					cmdArgs[i-2]=NULL;
 					execvp(command, cmdArgs);
-
+					//Execvp will only return if it fails to run a command, thus...
+					fprintf(stderr, "Command \"%s\" not found...\n", initialCommand);
+					exit(1);
 				}
 			}
 			if(verbose){
