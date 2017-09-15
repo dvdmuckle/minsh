@@ -79,11 +79,12 @@ int main(int argc, char** argv)
 		//Chop up the command into the command itself and the arguments
 		char *cmdArgs[256];
 		char initialCommand[256];
-		//Preserve our initial command so we can print it out later if verbose, or if the command is wrong
+		//Preserve our initial command so we can print it out later if verbose, or if the command is invalid
 		strcpy(initialCommand, command);
 		//Start putting flags into cmdArgs
 		//Running strtok with an arg of NULL just picks up where the last strtok left off
-		//This also gives us a nifty value in i, the length of the array of args, zero indexed
+		//This also gives us a nifty value in i, the length of the array of args
+		//We don't have to set the last value to NULL for execvp since fgets already did that after we took off the \n
 		int i=0;
 		cmdArgs[i] = strtok(command, " ");
 		while(cmdArgs[i] != NULL){
@@ -125,6 +126,7 @@ int main(int argc, char** argv)
 					}
 					close(STDOUT_FILENO);
 					open(cmdArgs[i-1], O_CREAT|O_WRONLY|O_TRUNC, S_IRWXU);
+					//Set where our > was so execvp won't read past it
 					cmdArgs[i-2]=NULL;
 					execvp(command, cmdArgs);
 
@@ -134,6 +136,7 @@ int main(int argc, char** argv)
 				printf("Fork successful, running \"%s\" with pid %d\n", initialCommand, (int) getpid());
 			}
 			execvp(command, cmdArgs);
+			//Execvp will only return if it fails to run a command, thus...
 			fprintf(stderr, "Command \"%s\" not found...\n", initialCommand);
 			exit(1);
 		}
