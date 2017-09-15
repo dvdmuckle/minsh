@@ -1,6 +1,6 @@
 %define name minsh
 %define build_timestamp %{lua: print(os.date("%Y%m%d"))}
-%define version 1.8.2
+%define version 1.8.3
 Name: %{name}		
 Version: %{version}	
 Release: %{build_timestamp}
