@@ -84,7 +84,7 @@ int main(int argc, char** argv)
 		//Start putting flags into cmdArgs
 		//Running strtok with an arg of NULL just picks up where the last strtok left off
 		//This also gives us a nifty value in i, the length of the array of args
-		//We don't have to set the last value to NULL for execvp since fgets already did that after we took off the \n
+		//We don't have to set the last value to NULL for execvp since strtok does that when it can't find any more strings
 		int i=0;
 		cmdArgs[i] = strtok(command, " ");
 		while(cmdArgs[i] != NULL){
