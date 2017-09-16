@@ -145,7 +145,7 @@ int main(int argc, char** argv)
 		else{
 			int wc = wait(NULL);
 			if(verbose){
-				printf("Process %d (wc: %d) (pid: %d) done waiting\n", rc, wc, (int) getpid());
+				printf("Process %d (pid: %d) done waiting\n", rc, (int) getpid());
 			}
 		}
 	} 
