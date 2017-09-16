@@ -143,9 +143,9 @@ int main(int argc, char** argv)
 			exit(1);
 		}
 		else{
-			int wc = wait(NULL);
+			wait(NULL);
 			if(verbose){
-				printf("Process %d (pid: %d) done waiting\n", rc, (int) getpid());
+				printf("Child process %d (parent pid: %d) done waiting\n", rc, (int) getpid());
 			}
 		}
 	} 
