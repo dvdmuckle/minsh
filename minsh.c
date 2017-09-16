@@ -84,7 +84,7 @@ int main(int argc, char** argv)
 		//Start putting flags into cmdArgs
 		//Running strtok with an arg of NULL just picks up where the last strtok left off
 		//This also gives us a nifty value in i, the length of the array of args
-		//We don't have to set the last value to NULL for execvp since fgets already did that after we took off the \n
+		//We don't have to set the last value to NULL for execvp since strtok does that when it can't find any more strings
 		int i=0;
 		cmdArgs[i] = strtok(command, " ");
 		while(cmdArgs[i] != NULL){
@@ -131,6 +131,7 @@ int main(int argc, char** argv)
 					execvp(command, cmdArgs);
 					//Execvp will only return if it fails to run a command, thus...
 					fprintf(stderr, "Command \"%s\" not found...\n", initialCommand);
+					exit(1);
 				}
 			}
 			if(verbose){
@@ -142,9 +143,9 @@ int main(int argc, char** argv)
 			exit(1);
 		}
 		else{
-			int wc = wait(NULL);
+			wait(NULL);
 			if(verbose){
-				printf("Process %d (wc: %d) (pid: %d) done waiting\n", rc, wc, (int) getpid());
+				printf("Child process %d (parent pid: %d) done waiting\n", rc, (int) getpid());
 			}
 		}
 	} 
