@@ -14,7 +14,7 @@ install: true
 compiler:
         - gcc
 script:
-        - make && sudo make install && bash .test.sh
+        - make && sudo make install && bash .test.sh && gcov minsh.c
         - docker run -v ${PWD}:/sources -v ${PWD}:/output:Z ${DOCKER_IMAGE}:${OS_TYPE}-${OS_VERSION}
 dist: trusty
 notifications:
@@ -23,4 +23,5 @@ notifications:
                         - "chat.freenode.net#dvdmuckle-bot-test"
 
 after_success:
+        - bash <(curl -s https://codecov.io/bash)
         - bash deploy.sh
