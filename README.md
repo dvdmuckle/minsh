@@ -1,5 +1,5 @@
 # minsh
-[![Build Status](https://travis-ci.org/dvdmuckle/minsh.svg?branch=master)](https://travis-ci.org/dvdmuckle/minsh)[![rpmbuild](https://copr.fedorainfracloud.org/coprs/dvdmuckle/minsh/package/minsh/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/dvdmuckle/minsh/package/minsh/)
+[![Build Status](https://travis-ci.org/dvdmuckle/minsh.svg?branch=master)](https://travis-ci.org/dvdmuckle/minsh)[![codecov](https://codecov.io/gh/dvdmuckle/minsh/branch/master/graph/badge.svg)](https://codecov.io/gh/dvdmuckle/minsh)[![rpmbuild](https://copr.fedorainfracloud.org/coprs/dvdmuckle/minsh/package/minsh/status_image/last_build.png)](https://copr.fedorainfracloud.org/coprs/dvdmuckle/minsh/package/minsh/)
 
 A very simple shell.
 
