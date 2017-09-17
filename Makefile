@@ -1,5 +1,5 @@
 CC=gcc
-CFLAGS=-I. -Wall -std=gnu99 -coverage
+CFLAGS=-I. -Wall -std=gnu99
 DEPS =
 OBJ = minsh.o
 
