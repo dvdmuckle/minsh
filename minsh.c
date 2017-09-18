@@ -125,7 +125,7 @@ int main(int argc, char** argv)
 						printf("Fork with redirect successful, running \"%s\" with pid %d\n", initialCommand, (int) getpid());
 					}
 					close(STDOUT_FILENO);
-					open(cmdArgs[i-1], O_CREAT|O_WRONLY|O_TRUNC, S_IRWXU);
+					open(cmdArgs[i-1], O_CREAT|O_WRONLY|O_TRUNC, 0644);
 					//Set where our > was so execvp won't read past it
 					cmdArgs[i-2]=NULL;
 					execvp(command, cmdArgs);
