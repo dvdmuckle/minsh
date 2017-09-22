@@ -22,6 +22,7 @@
 #include <sys/wait.h>
 #include <fcntl.h>
 #include <dirent.h>
+#include "hashmap.h"
 typedef int bool;
 #define true 1
 #define false 0

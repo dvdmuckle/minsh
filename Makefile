@@ -1,6 +1,6 @@
 CC=gcc
-CFLAGS=-I. -Wall -std=gnu99
-DEPS =
+CFLAGS=-I. -Wall -std=gnu99 -Wno-endif-labels
+DEPS = 
 OBJ = minsh.o
 
 all: $(OBJ)
