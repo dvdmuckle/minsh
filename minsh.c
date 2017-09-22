@@ -5,7 +5,7 @@
  *
  *    Description:  A simple shell
  *
- *        Version:  1.0
+ *        Version:  1.8.6
  *        Created:  08/31/2017 03:14:02 PM
  *       Revision:  none
  *       Compiler:  gcc
@@ -29,6 +29,15 @@ char *user;
 char host[32];
 bool verbose = false;
 char homedir[64];
+char* aliascommands[256];
+char* aliasnames[256];
+int aliascount = 0;
+int alias(char* aliasname, char* aliascommand){
+	strcpy(aliasname, aliasnames[aliascount]);
+	strcpy(aliascommand, aliascommands[aliascount]);
+	aliascount++;
+	return 0;
+}
 int main(int argc, char** argv)
 {
 	//Help stuff and verbose mode
