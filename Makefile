@@ -9,7 +9,7 @@ all: $(OBJ)
 	$(CC) -o $@ $< $(CFLAGS)
 
 install:
-	install -s minsh.o /usr/bin/minsh
+	install -s $(OBJ) /usr/bin/minsh
 
 
 .PHONY : clean
@@ -17,4 +17,4 @@ clean:
 	rm $(OBJ)
 .PHONY : test-install
 test-install:
-	install -s minsh.o minsh
+	install -s $(OBJ) minsh
