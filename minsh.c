@@ -63,8 +63,10 @@ int main(int argc, char** argv)
 	user = getlogin();
 	gethostname(host, 32);
 	sprintf(homedir, "/home/%s", user);
-	while (should_run){   
-		printf("%s@%s> ", user, host);
+	char dir[128];
+	while (should_run){
+	        getcwd(dir, 128);	
+		printf("%s@%s:%s> ", user, host, dir);
 		fflush(stdout);
 		char command[256];
 		//Actuall take the command input. Since we have to give fgets a buffer, this determines our command string size too
