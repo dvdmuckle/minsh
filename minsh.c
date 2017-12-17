@@ -23,10 +23,12 @@
 #include <fcntl.h>
 #include <dirent.h>
 #include "hashmap.h"
+#include <pwd.h>
+#include <sys/types.h>
 typedef int bool;
 #define true 1
 #define false 0
-char *user;
+char* user;
 char host[32];
 bool verbose = false;
 char homedir[64];
@@ -60,7 +62,8 @@ int main(int argc, char** argv)
 	if(verbose){
 		printf("Getting user and hostname for custom prompt\n");
 	}
-	user = getlogin();
+	struct passwd *userinfo = getpwuid(getuid());
+	user = userinfo->pw_name;
 	gethostname(host, 32);
 	sprintf(homedir, "/home/%s", user);
 	char dir[128];
