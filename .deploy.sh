@@ -2,7 +2,7 @@
 if [ "$TRAVIS_BRANCH" == "master" ]; then
 	source ~/virtualenv/python2.7/bin/activate
 	pip install copr-cli simplejson jinja2
-	openssl aes-256-cbc -K $encrypted_403c23673bf1_key -iv $encrypted_403c23673bf1_iv -in copr.enc -out .copr -d
+	openssl aes-256-cbc -K $encrypted_403c23673bf1_key -iv $encrypted_403c23673bf1_iv -in .copr.enc -out .copr -d
 	copr-cli --config .copr build --nowait ${COPR_REPOSITORY} *.src.rpm
 	sudo apt-get install alien
 	sudo alien *[^src].rpm
