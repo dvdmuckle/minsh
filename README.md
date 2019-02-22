@@ -6,7 +6,7 @@ A very simple shell.
 ### Install
 
 #### Fedora
-A Copr repo for Fedora 25, 26, 27, and rawhide is supplied.
+A Copr repo for Fedora 28, 29, and rawhide is supplied.
 
 ```
 sudo dnf copr enable dvdmuckle/minsh
